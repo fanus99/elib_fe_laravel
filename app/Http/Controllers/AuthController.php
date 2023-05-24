@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
-    public $base_url;
-    public function __construct()
-    {
-        $base_url = config('app.guzzle_url');
-    }
-
     public function login(Request $request){
-        $theUrl     = $base_url.'/auth/login';
+        $theUrl     = $this->base_url.'/auth/login';
         $response= Http::post($theUrl, [
             'Username'=>$request->Username,
             'Password'=>$request->Password

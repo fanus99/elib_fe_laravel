@@ -21,21 +21,24 @@
                         <div class="row">
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    <form action="" class="row g-4">
+                                    <form method="POST" id="formLogin" class="row g-4">
+                                        @csrf
                                         <div class="col-12">
                                             <label>Username<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <input type="text" name="Username" class="form-control" placeholder="Enter Username">
                                             </div>
+                                            <span id="alert-username" class="text-danger"></span>
                                         </div>
 
                                         <div class="col-12">
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                <input type="password" class="form-control" placeholder="Enter Password">
+                                                <input type="password" name="Password" class="form-control" placeholder="Enter Password">
                                             </div>
+                                            <span id="alert-password" class="text-danger"></span>
                                         </div>
 
                                         <div class="col-sm-6">
@@ -50,7 +53,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary px-4 float-end mt-4">login</button>
+                                            <button type="submit" id="loginButton" class="btn btn-primary px-4 float-end mt-4">login</button>
                                         </div>
                                     </form>
                                 </div>
@@ -69,7 +72,26 @@
     </div>
 
     <!-- Bootstrap JS -->
+<script type="module">
+    $("#formLogin").submit(function (event) {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: $("#formLogin").serialize(),
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            if(data.metadata == undefined){
+                $("#alert-username").html(data.Username)
+                $("#alert-password").html(data.Password)
+            }
+            // alert(data.length)
+            console.log(data);
+        });
 
+        event.preventDefault();
+    });
+</script>
 </body>
 
 </html>
