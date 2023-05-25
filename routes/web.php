@@ -18,17 +18,39 @@ Route::get('/', function () {
 });
 
 // login dan register
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('login');
+// Route::get('/register', function () {
+//     return view('register');
+// })->name('register');
 
 // dashbord
-Route::get('/', function () {
-    return view('welcome');
-})->name('wellcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('wellcome');
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', function () {
+    return view('authcustom.login');
+})->name('loginview');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+
+Route::get('/register', function () {
+    return view('authcustom.register');
+})->name('registerview');
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+/**hanya untuk development nanti akan dihapus
+Route::get('/get-session', [App\Http\Controllers\AuthController::class, 'getallsession'])->name('get-session');
+**/
+Route::get('/logout', [App\Http\Controllers\AuthController::class, 'Logout'])->name('logout');
+
+Route::middleware('AuthAccess')->group(function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // master
 Route::get('/siswa', function () {
