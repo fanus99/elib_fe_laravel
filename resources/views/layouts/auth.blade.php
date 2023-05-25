@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8"></meta>
+<meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="author" content="Kelompok 1 PPL PENS LJ D4 IT 2023"></meta>
@@ -11,10 +11,10 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <script src="{{ asset('js/master.js') }}"></script>
 </head>
-
 <body>
-    <div id="app" class="login-page bg-light">
+<div id="app" class="login-page bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
@@ -43,19 +43,5 @@
             </div>
         </div>
     </div>
-
-    <script type="module">
-        function AjaxPostWithoutAuth(endpoint, data){
-            return $.ajax({
-                type: "POST",
-                url: endpoint,
-                data: data,
-                dataType: "json",
-                encode: true,
-                async:false,
-            }).responseJSON;
-        }
-    </script>
 </body>
-
 </html>
