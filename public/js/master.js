@@ -62,16 +62,4 @@ function addInputField(name, label, type, isRequired, icon, value){
 
     return inputField;
 }
-<<<<<<< HEAD
-function openModalCreate(model){
-    $("#createModalTitle").html(model);
-    createForm();
-    createModal.show();
-}
-function openModalUpdate(model, id){
-    $("#updateModalTitle").html(model);
-    updateFrom(id);
-    updateModal.show();
-}
-=======
->>>>>>> efd906f18949574def4590c2dd402a1b31b30570
+

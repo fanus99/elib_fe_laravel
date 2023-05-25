@@ -43,6 +43,29 @@ Route::middleware('AuthAccess')->group(function(){
             });
         });
     });
+    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
+        Route::group(['prefix' => 'kelas', 'as' => 'kelas.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('/get-all', [App\Http\Controllers\KelasController::class, 'getAll'])->name('getAll');
+                Route::get('/get-by-id/{id}', [App\Http\Controllers\KelasController::class, 'getById'])->name('getById');
+                Route::post('/create', [App\Http\Controllers\KelasController::class, 'create'])->name('create');
+                Route::post('/update/{id}', [App\Http\Controllers\KelasController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\KelasController::class, 'delete'])->name('delete');
+            });
+        });
+    });
+    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
+        Route::group(['prefix' => 'semester', 'as' => 'semester.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('/get-all', [App\Http\Controllers\SemesterController::class, 'getAll'])->name('getAll');
+                Route::get('/get-by-id/{id}', [App\Http\Controllers\SemesterController::class, 'getById'])->name('getById');
+                Route::post('/create', [App\Http\Controllers\SemesterController::class, 'create'])->name('create');
+                Route::post('/update/{id}', [App\Http\Controllers\SemesterController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\SemesterController::class, 'delete'])->name('delete');
+            });
+        });
+    });
+
     // master
     Route::get('/new', function () {
         return view('new');
