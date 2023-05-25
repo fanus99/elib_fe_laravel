@@ -31,12 +31,7 @@
                                 </main>
 
                             </div>
-                            <div class="col-md-5 ps-0 d-none d-md-block">
-                                <div class="form-right h-100 bg-primary text-white text-center pt-5">
-                                    <i class="bi bi-bootstrap"></i>
-                                    <h2 class="fs-1">Welcome Back!!!</h2>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
