@@ -33,6 +33,9 @@ Route::middleware('AuthAccess')->group(function(){
     // Dashboard
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // master
+    Route::get('/new', function () {
+        return view('new');
+    })->name('new');
     Route::get('/siswa', function () {
         return view('master_siswa');
     })->name('siswa');
@@ -52,20 +55,20 @@ Route::middleware('AuthAccess')->group(function(){
         return view('master_buku');
     })->name('buku');
     Route::get('/gmd', function () {
-        return view('master_gmd');
+        return view('gmd');
     })->name('gmd');
     Route::get('/tipekoleksi', function () {
-        return view('master_tipekoleksi');
+        return view('tipekoleksi');
     })->name('tipekoleksi');
     Route::get('/peminjaman', function () {
-        return view('master_peminjaman');
+        return view('peminjaman');
     })->name('peminjaman');
     Route::get('/ddc', function () {
         return view('master_ddc');
     })->name('ddc');
-    Route::get('/master_eksemplar', function () {
-        return view('master_eksemplar');
-    })->name('master_eksemplar');
+    Route::get('/eksemplar', function () {
+        return view('eksemplar');
+    })->name('eksemplar');
 
     // edit dan tambah data
     Route::get('/create_bahasa', function () {
@@ -81,6 +84,13 @@ Route::middleware('AuthAccess')->group(function(){
     Route::get('/update_buku', function () {
         return view('buku/update');
     })->name('update_buku');
+
+    Route::get('/create_gmd', function () {
+        return view('gmd/create');
+    })->name('create_gmd');
+    Route::get('/update_gmd', function () {
+        return view('gmd/update');
+    })->name('update_gmd');
 
     Route::get('/create_kelas', function () {
         return view('kelas/create');
@@ -122,9 +132,6 @@ Route::middleware('AuthAccess')->group(function(){
     Route::get('/kelassiswa', function () {
         return view('kelassiswa');
     })->name('kelassiswa');
-    Route::get('/eksemplarbuku', function () {
-        return view('eksemplarbuku');
-    })->name('eksemplarbuku');
     Route::get('/stokopname', function () {
         return view('stokopname');
     })->name('stokopname');
@@ -143,12 +150,12 @@ Route::middleware('AuthAccess')->group(function(){
         return view('kelassiswa/update');
     })->name('update_kelassiswa');
 
-    Route::get('/create_eksemplarbuku', function () {
-        return view('eksemplarbuku/create');
-    })->name('create_eksemplarbuku');
-    Route::get('/update_eksemplarbuku', function () {
-        return view('eksemplarbuku/update');
-    })->name('update_eksemplarbuku');
+    Route::get('/create_eksemplar', function () {
+        return view('eksemplar/create');
+    })->name('create_eksemplar');
+    Route::get('/update_eksemplar', function () {
+        return view('eksemplar/update');
+    })->name('update_eksemplar');
 
     Route::get('/create_bukustok', function () {
         return view('bukustok/create');
@@ -156,6 +163,20 @@ Route::middleware('AuthAccess')->group(function(){
     Route::get('/update_bukustok', function () {
         return view('bukustok/update');
     })->name('update_bukustok');
+
+    Route::get('/create_tipekoleksi', function () {
+        return view('tipekoleksi/create');
+    })->name('create_tipekoleksi');
+    Route::get('/update_tipekoleksi', function () {
+        return view('tipekoleksi/update');
+    })->name('update_tipekoleksi');
+
+    Route::get('/create_peminjaman', function () {
+        return view('peminjaman/create');
+    })->name('create_peminjaman');
+    Route::get('/update_peminjaman', function () {
+        return view('peminjaman/update');
+    })->name('update_peminjaman');
 
 });
 

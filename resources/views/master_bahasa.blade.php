@@ -9,7 +9,7 @@
                         <div class="card">
                             <div class="card-header">
                             <i class="fa-solid fa-book"></i>
-                                Data Buku Di Pinjam
+                                Data Bahasa Yang Di Guanakan
                             </div>
                             <div class="card-body">
                                 <table class="table">

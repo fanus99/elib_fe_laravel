@@ -45,27 +45,9 @@
                                     <a class="nav-link" href="{{route('semester')}}">semester</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Daftar Pustaka
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="{{route('gmd')}}">kode gmd</a>
-                                    <a class="nav-link" href="{{route('tipekoleksi')}}">Tipe Koleksi</a>
-                                    <a class="nav-link" href="{{route('master_eksemplar')}}">kode eksemplar</a>
-                                    <a class="nav-link" href="{{route('Rakbuku')}}">Rak Buku</a>
-                                    <a class="nav-link" href="{{route('bahasa')}}">Bahasa</a>
-                                </nav>
-                            </div>
                                     <a class="nav-link" href="{{route('buku')}}">Buku</a>
                                     <a class="nav-link" href="{{route('peminjaman')}}">peminjaman</a>
                         </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
                     </div>
                 </nav>
             </div>

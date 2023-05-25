@@ -8,7 +8,7 @@
                         <div class="card">
                             <div class="card-header">
                             <i class="fa-solid fa-book"></i>
-                                Data Buku Di Pinjam
+                                Data Buku 
                             </div>
                             <div class="card-body">
                                 <table class="table">
