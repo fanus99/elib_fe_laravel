@@ -42,8 +42,6 @@ Route::middleware('AuthAccess')->group(function(){
                 Route::delete('/delete/{id}', [App\Http\Controllers\SiswaController::class, 'delete'])->name('delete');
             });
         });
-    });
-    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
         Route::group(['prefix' => 'kelas', 'as' => 'kelas.'], function () {
             Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
                 Route::get('/get-all', [App\Http\Controllers\KelasController::class, 'getAll'])->name('getAll');
@@ -53,8 +51,6 @@ Route::middleware('AuthAccess')->group(function(){
                 Route::delete('/delete/{id}', [App\Http\Controllers\KelasController::class, 'delete'])->name('delete');
             });
         });
-    });
-    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
         Route::group(['prefix' => 'semester', 'as' => 'semester.'], function () {
             Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
                 Route::get('/get-all', [App\Http\Controllers\SemesterController::class, 'getAll'])->name('getAll');
@@ -62,6 +58,24 @@ Route::middleware('AuthAccess')->group(function(){
                 Route::post('/create', [App\Http\Controllers\SemesterController::class, 'create'])->name('create');
                 Route::post('/update/{id}', [App\Http\Controllers\SemesterController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [App\Http\Controllers\SemesterController::class, 'delete'])->name('delete');
+            });
+        });
+        Route::group(['prefix' => 'buku', 'as' => 'buku.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('/get-all', [App\Http\Controllers\BukuController::class, 'getAll'])->name('getAll');
+                Route::get('/get-by-id/{id}', [App\Http\Controllers\BukuController::class, 'getById'])->name('getById');
+                Route::post('/create', [App\Http\Controllers\BukuController::class, 'create'])->name('create');
+                Route::post('/update/{id}', [App\Http\Controllers\BukuController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\BukuController::class, 'delete'])->name('delete');
+            });
+        });
+        Route::group(['prefix' => 'peminjaman', 'as' => 'peminjaman.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('/get-all', [App\Http\Controllers\PeminjamanController::class, 'getAll'])->name('getAll');
+                Route::get('/get-by-id/{id}', [App\Http\Controllers\PeminjamanController::class, 'getById'])->name('getById');
+                Route::post('/create', [App\Http\Controllers\PeminjamanController::class, 'create'])->name('create');
+                Route::post('/update/{id}', [App\Http\Controllers\PeminjamanController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\PeminjamanController::class, 'delete'])->name('delete');
             });
         });
     });

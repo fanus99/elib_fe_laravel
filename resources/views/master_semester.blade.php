@@ -112,7 +112,7 @@
         function createForm(){
             var formHtml = "";
             // addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("Tahun Ajaran", "TahunAjaran", "text", true, 'bi-person-fill', '');
+            formHtml += addInputField("TahunAjaran", "Tahun Ajaran", "text", true, 'bi-person-fill', '');
             formHtml += addInputField("Semester", "Semester", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("IsActive", "IsActive", "text", true, 'bi-person-vcard', '');
 
@@ -129,7 +129,7 @@
             var data = getDataById(id);
             var formHtml = "";
             //addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("Tahun Ajaran", "TahunAjaran", "text", true, 'bi-person-fill', data.data.TahunAjaran);
+            formHtml += addInputField("TahunAjaran", "Tahun Ajaran", "text", true, 'bi-person-fill', data.data.TahunAjaran);
             formHtml += addInputField("Semester", "Semester", "text", true, 'bi-person-vcard', data.data.Semester);
             formHtml += addInputField("IsActive", "IsActive", "text", true, 'bi-person-vcard', data.data.IsActive);
 
