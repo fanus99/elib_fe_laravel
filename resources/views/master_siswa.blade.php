@@ -10,8 +10,6 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-        <script src="{{ asset('js/master.js') }}"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -87,103 +85,12 @@
                 </footer>
             </div>
         </div>
-        <div class="modal" id="ModalCreate" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('js/scripts.js')}}"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> -->
-        <!-- <script src="{{asset('assets/demo/chart-pie-demo.js')}}"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('assets/demo/chart-pie-demo.js')}}"></script>
         <!-- <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
-        <!-- <script src="{{asset('js/datatables-simple-demo.js')}}"></script> -->
-        <script type="module">
-            var $baseroute = "/master/siswa/api/";
-
-            function getData(){
-                var data = AjaxGet($baseroute + 'get-all');
-                var renderData = ``;
-                var no = 1;
-                $.each(data.data, function( index, value ) {
-                    renderData += `<tr>
-                                        <td>`+ no +`</td>
-                                        <td>`+ value.Nama +`</td>
-                                        <td>`+ value.NIS +`</td>
-                                        <td>
-                                            <a href="{{route('update_siswa')}}" class="btn btn-success btn-sm">update</a>
-                                            <a href="{{route('siswa')}}" class="btn btn-danger btn-sm">delete</a>
-                                        </td>
-                                    </tr>`;
-                });
-                $('#TableDataBody').html(renderData);
-                $('#TableData').DataTable({
-                    processing: true,
-                    serverSide: false
-                });
-            }
-
-            function getDataById($id){
-                var data = AjaxGet($baseroute + 'get-by-id/' + $id);
-                var renderData = ``;
-                var no = 1;
-                $.each(data.data, function( index, value ) {
-                    renderData += `<tr>
-                                        <td>`+ no +`</td>
-                                        <td>`+ value.Nama +`</td>
-                                        <td>`+ value.NIS +`</td>
-                                        <td>
-                                            <a href="{{route('update_siswa')}}" class="btn btn-success btn-sm">update</a>
-                                            <a href="{{route('siswa')}}" class="btn btn-danger btn-sm">delete</a>
-                                        </td>
-                                    </tr>`;
-                });
-                $('#TableDataBody').html(renderData);
-                $('#TableData').DataTable({
-                    processing: true,
-                    serverSide: false
-                });
-            }
-            // $('#ModalCreate').modal('show');
-            var exampleModal = document.getElementById('ModalCreate')
-            exampleModal.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            var button = event.relatedTarget
-            // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
-            // If necessary, you could initiate an AJAX request here
-            // and then do the updating in a callback.
-            //
-            // Update the modal's content.
-            var modalTitle = exampleModal.querySelector('.modal-title')
-            var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-            modalTitle.textContent = 'New message to ' + recipient
-            modalBodyInput.value = recipient
-            })
-            $(function() {
-                // $("ModalCreate").show()
-
-
-                getData();
-                // getDataById(4);
-            });
-
-
-        </script>
-
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
     </body>
 </html>
