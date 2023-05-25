@@ -31,7 +31,7 @@ class BaseController extends Controller
         return Http::withHeaders([
             'access_token' =>  session()->get('access_token'),
             'Content-Type' => 'application/json'
-        ])->put($url, $request);
+        ])->post($url, $request);
     }
 
     public function DeleteDataWithAuth($url){
