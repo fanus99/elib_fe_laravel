@@ -31,6 +31,8 @@
         <a class="btn btn-success btn-sm btn-kiri" href="#" id="buttonCreate" role="button"><h3>+</h3></i></a>
     </div>
 
+
+
     <script type="module">
         var $baseroute = "/master/siswa/api/";
         var updateModal = new bootstrap.Modal(document.getElementById('updateModal'), {});
@@ -68,6 +70,8 @@
             return AjaxGet($baseroute + 'get-by-id/' + $id);
         }
 
+
+
         $(function() {
             getData();
         });
@@ -97,6 +101,12 @@
             openModalCreate("Create Siswa");
         });
 
+        function openModalCreate(model){
+            $("#createModalTitle").html(model);
+            createForm();
+            createModal.show();
+        }
+
         function createForm(){
             var formHtml = "";
             // addInputField(name, label, type, isRequired, icon, value)
@@ -106,7 +116,11 @@
             $("#formModalCreate").html(formHtml);
         }
 
-
+        function openModalUpdate(model, id){
+            $("#updateModalTitle").html(model);
+            updateFrom(id);
+            updateModal.show();
+        }
 
         function updateFrom(id){
             var data = getDataById(id);
