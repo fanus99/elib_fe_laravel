@@ -44,7 +44,7 @@
     <script type="module">
         $("#formLogin").submit(function (event) {
             event.preventDefault();
-            var postdata = AjaxPostWithoutAuth("/login", $("#formLogin").serialize());
+            var postdata = AjaxPost("/login", $("#formLogin").serialize());
 
             if(postdata.metadata == undefined){
                 $("#alert-username").html(postdata.Username);

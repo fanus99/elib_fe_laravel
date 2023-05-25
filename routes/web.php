@@ -31,6 +31,7 @@ Route::get('/', function () {
 // })->name('wellcome');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/wellcome', [App\Http\Controllers\HomeController::class, 'index'])->name('wellcome');
 Route::get('/login', function () {
     return view('authcustom.login');
 })->name('loginview');
@@ -40,13 +41,24 @@ Route::get('/register', function () {
     return view('authcustom.register');
 })->name('registerview');
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
-/**hanya untuk development nanti akan dihapus
+// /**hanya untuk development nanti akan dihapus
 Route::get('/get-session', [App\Http\Controllers\AuthController::class, 'getallsession'])->name('get-session');
-**/
+// **/
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'Logout'])->name('logout');
 
 Route::middleware('AuthAccess')->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
+        Route::group(['prefix' => 'siswa', 'as' => 'kelas.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::get('/get-all', [App\Http\Controllers\SiswaController::class, 'getAll'])->name('getAll');
+                Route::get('/get-by-id/{id}', [App\Http\Controllers\SiswaController::class, 'getById'])->name('getById');
+                Route::post('/create', [App\Http\Controllers\SiswaController::class, 'create'])->name('create');
+                Route::put('/update/{id}', [App\Http\Controllers\SiswaController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\SiswaController::class, 'delete'])->name('delete');
+            });
+        });
+    });
 });
 
 // Auth::routes();

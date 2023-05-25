@@ -34,6 +34,7 @@ class AuthAccess
         }
 
         try {
+            JWT::$leeway = 6000;
             $credentials = JWT::decode($token, new Key($key, 'HS256'));
         } catch(ExpiredException $e) {
             $refreshToken = $this->authController->refreshToken();
