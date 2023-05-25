@@ -75,7 +75,7 @@
     <script type="module">
         $("#formRegister").submit(function (event) {
             event.preventDefault();
-            var postdata = AjaxPostWithoutAuth("/register", $("#formRegister").serialize());
+            var postdata = AjaxPost("/register", $("#formRegister").serialize());
 
             if(postdata.metadata == undefined){
                 $("#alert-InstitutionName").html(postdata.InstitutionName)
