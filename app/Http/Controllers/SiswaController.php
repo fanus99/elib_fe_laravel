@@ -33,7 +33,7 @@ class SiswaController extends BaseController
         $url= $this->base_url . $this->baseRoute . $id .'';
         $response = $this->PutDataWithAuth($url, $request);
 
-        return $response->object();
+        return $this->PutDataWithAuth($url, $request);
     }
 
     public function delete($id){

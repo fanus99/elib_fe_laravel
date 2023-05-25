@@ -151,7 +151,7 @@
             var idData = $("#idUpdateForm").val();
             var postdata = AjaxPost($baseroute + "update/" + idData + "", $("#formUpdate").serialize());
 
-            if(postdata.metadata.message == true){
+            if(postdata.metadata.message == "Data Updated"){
                 Swal.fire('Sukses', postdata.metadata.message,'success');
                 updateModal.hide();
                 getData();
