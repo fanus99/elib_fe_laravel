@@ -33,12 +33,12 @@ Route::middleware('AuthAccess')->group(function(){
     // Dashboard
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
-        Route::group(['prefix' => 'kelas', 'as' => 'kelas.'], function () {
+        Route::group(['prefix' => 'siswa', 'as' => 'siswa.'], function () {
             Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
                 Route::get('/get-all', [App\Http\Controllers\SiswaController::class, 'getAll'])->name('getAll');
                 Route::get('/get-by-id/{id}', [App\Http\Controllers\SiswaController::class, 'getById'])->name('getById');
                 Route::post('/create', [App\Http\Controllers\SiswaController::class, 'create'])->name('create');
-                Route::put('/update/{id}', [App\Http\Controllers\SiswaController::class, 'update'])->name('update');
+                Route::post('/update/{id}', [App\Http\Controllers\SiswaController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [App\Http\Controllers\SiswaController::class, 'delete'])->name('delete');
             });
         });

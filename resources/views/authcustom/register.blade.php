@@ -89,7 +89,7 @@
             }
 
             if(postdata.data.status == true){
-                Swal.fire('Success', postdata.metadata.message,'success');
+                // Swal.fire('Success', postdata.metadata.message,'success');
                 window.location.href = postdata.data.redirect;
             }
 
