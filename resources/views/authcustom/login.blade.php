@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +11,15 @@
 </head>
 
 <body>
-<div class="login-page bg-light">
+    <div class="login-page bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                  <h3 class="mb-3">Login Now</h3>
+                    @if ($message = Session::get('message'))
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <div class="bg-white shadow rounded">
                         <div class="row">
                             <div class="col-md-7 pe-0">
@@ -24,10 +27,13 @@
                                     <form method="POST" id="formLogin" class="row g-4">
                                         @csrf
                                         <div class="col-12">
+                                            <h1 class="h4">Login Page ELIB</h1>
+                                        </div>
+                                        <div class="col-12">
                                             <label>Username<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                <input type="text" name="Username" class="form-control" placeholder="Enter Username">
+                                                <input type="text" name="Username" class="form-control" placeholder="Enter Username" required>
                                             </div>
                                             <span id="alert-username" class="text-danger"></span>
                                         </div>
@@ -36,7 +42,7 @@
                                             <label>Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                <input type="password" name="Password" class="form-control" placeholder="Enter Password">
+                                                <input type="password" name="Password" class="form-control" placeholder="Enter Password" required>
                                             </div>
                                             <span id="alert-password" class="text-danger"></span>
                                         </div>
@@ -49,7 +55,7 @@
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <a href="#" class="float-end text-primary">Forgot Password?</a>
+                                            <a href="{{ route('registerview') }}" class="float-end text-primary">Register</a>
                                         </div>
 
                                         <div class="col-12">
@@ -71,27 +77,36 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-<script type="module">
-    $("#formLogin").submit(function (event) {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: $("#formLogin").serialize(),
-            dataType: "json",
-            encode: true,
-        }).done(function (data) {
-            if(data.metadata == undefined){
-                $("#alert-username").html(data.Username)
-                $("#alert-password").html(data.Password)
+    <script type="module">
+        $("#formLogin").submit(function (event) {
+            event.preventDefault();
+            var postdata = AjaxPostWithoutAuth("/login", $("#formLogin").serialize());
+
+            if(postdata.metadata == undefined){
+                $("#alert-username").html(postdata.Username);
+                $("#alert-password").html(postdata.Password);
+
+                return false;
             }
-            // alert(data.length)
-            console.log(data);
+
+            if(postdata.data.status == true){
+                window.location.href = postdata.data.redirect;
+            }
+
+            Swal.fire('Error', postdata.metadata.message,'warning');
         });
 
-        event.preventDefault();
-    });
-</script>
+        function AjaxPostWithoutAuth(endpoint, data){
+            return $.ajax({
+                type: "POST",
+                url: endpoint,
+                data: data,
+                dataType: "json",
+                encode: true,
+                async:false,
+            }).responseJSON;
+        }
+    </script>
 </body>
 
 </html>
