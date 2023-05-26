@@ -19,6 +19,9 @@
                             <th>No</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Batas Pengembalian</th>
+                            <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Siswa</th>
+                            <th scope="col">Buku</th>
                             <th scope="col">aksi</th>
                         </tr>
                     </thead>
@@ -47,6 +50,9 @@
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
+                                    <td>`+ value.TanggalPengembalian +`</td>
+                                    <td>`+ value.Siswa +`</td>
+                                    <td>`+ value.Buku +`</td>
                                     <td>
                                         <button  data-id="`+ value.IdPeminjaman +`" class="btn btn-success btn-sm buttonUpdate">update</button>
                                         <button  data-id="`+ value.IdPeminjaman +`" class="btn btn-danger btn-sm buttonDelete">delete</button>
@@ -112,6 +118,9 @@
             // addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', '');
             formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', '');
 
             $("#formModalCreate").html(formHtml);
         }
@@ -128,6 +137,9 @@
             //addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', data.data.TanggalPinjam);
             formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', data.data.BatasPengembalian);
+            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', data.data.TanggalPengembalian);
+            formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', data.data.Siswa);
+            formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', data.data.Buku);
 
             $("#formModalUpdate").html(formHtml);
         }
