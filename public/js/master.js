@@ -62,3 +62,4 @@ function addInputField(name, label, type, isRequired, icon, value){
 
     return inputField;
 }
+

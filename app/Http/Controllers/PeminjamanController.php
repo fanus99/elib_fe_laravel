@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KelasController extends BaseController
+class PeminjamanController extends BaseController
 {
-    private $baseRoute = '/master/kelas/';
+    private $baseRoute = '/peminjaman';
 
     public function getAll(Request $request){
         $url= $this->base_url . $this->baseRoute;
@@ -33,7 +33,7 @@ class KelasController extends BaseController
         $url= $this->base_url . $this->baseRoute . $id .'';
         $response = $this->PutDataWithAuth($url, $request);
 
-        return $this->PutDataWithAuth($url, $request);
+        return $response->object();
     }
 
     public function delete($id){

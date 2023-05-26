@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KelasController extends BaseController
+class BukuController extends BaseController
 {
-    private $baseRoute = '/master/kelas/';
+    private $baseRoute = '/buku';
 
     public function getAll(Request $request){
         $url= $this->base_url . $this->baseRoute;
