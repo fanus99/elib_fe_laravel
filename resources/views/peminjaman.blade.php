@@ -19,7 +19,6 @@
                             <th>No</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Batas Pengembalian</th>
-                            <th scope="col">Tanggal Pengembalian</th>
                             <th scope="col">Siswa</th>
                             <th scope="col">Buku</th>
                             <th scope="col">aksi</th>
@@ -50,7 +49,6 @@
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
-                                    <td>`+ value.TanggalPengembalian +`</td>
                                     <td>`+ value.Siswa +`</td>
                                     <td>`+ value.Buku +`</td>
                                     <td>
@@ -116,11 +114,14 @@
         function createForm(){
             var formHtml = "";
             // addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', '');
-            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', '');
+            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', '');
+            formHtml += `<select name="Siswa" class="form-control">
+                            <option value='19'>amaw</option>
+                        </select>`
+                        formHtml += `<select name="Buku" class="form-control">
+                            <option value='1'>Trik mudah belajar login</option>
+                        </select>`
 
             $("#formModalCreate").html(formHtml);
         }
@@ -135,11 +136,10 @@
             var data = getDataById(id);
             var formHtml = "";
             //addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', data.data.TanggalPinjam);
-            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', data.data.BatasPengembalian);
-            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', data.data.TanggalPengembalian);
-            formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', data.data.Siswa);
-            formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', data.data.Buku);
+            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', data.data.TanggalPinjam);
+            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', data.data.BatasPengembalian);
+            formHtml += addInputField("Siswa", "amaw", "text", true, 'bi-person-vcard', data.data.Siswa);
+            formHtml += addInputField("Buku", "Trik mudah belajar login", "text", true, 'bi-person-vcard', data.data.Buku);
 
             $("#formModalUpdate").html(formHtml);
         }
