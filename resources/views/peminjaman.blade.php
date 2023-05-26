@@ -46,13 +46,14 @@
             var renderData = ``;
             var no = 1;
             $.each(data.data, function( index, value ) {
+                if(value.TanggalPengembalian == "undefined"){
+                    value.TanggalPengembalian = replaceUndifined(value.TanggalPengembalian) + `<a data-id="`+ value.IdPeminjaman +`" class="buttonPengembalian" href="#">Siswa Mengembalikan</a>`;
+                }
                 renderData += `<tr>
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
-                                    <td>`+ replaceUndifined(value.TanggalPengembalian) +`
-                                        <a data-id="`+ value.IdPeminjaman +`" class="btn btn-success btn-sm buttonPengembalian" href="#">Siswa Mengembalikan</a>
-                                    </td>
+                                    <td>`+ value.TanggalPengembalian +`</td>
                                     <td>`+ value.Siswa +`</td>
                                     <td>`+ value.Buku +`</td>
                                     <td>
