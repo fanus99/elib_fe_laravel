@@ -50,7 +50,7 @@
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
-                                    <td>`+ value.TanggalPengembalian +`</td>
+                                    <td>`+ replaceUndifined(value.TanggalPengembalian) +`</td>
                                     <td>`+ value.Siswa +`</td>
                                     <td>`+ value.Buku +`</td>
                                     <td>
@@ -116,9 +116,9 @@
         function createForm(){
             var formHtml = "";
             // addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', '');
-            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', '');
+            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "date", true, 'bi-person-vcard', '');
             formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', '');
 
@@ -135,9 +135,8 @@
             var data = getDataById(id);
             var formHtml = "";
             //addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "text", true, 'bi-person-fill', data.data.TanggalPinjam);
-            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "text", true, 'bi-person-vcard', data.data.BatasPengembalian);
-            formHtml += addInputField("TanggalPengembalian", "Tanggal Pengembalian", "text", true, 'bi-person-vcard', data.data.TanggalPengembalian);
+            formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', data.data.TanggalPinjam);
+            formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', data.data.BatasPengembalian);
             formHtml += addInputField("Siswa", "Siswa", "text", true, 'bi-person-vcard', data.data.Siswa);
             formHtml += addInputField("Buku", "Buku", "text", true, 'bi-person-vcard', data.data.Buku);
 

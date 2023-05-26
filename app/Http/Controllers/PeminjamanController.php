@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PeminjamanController extends BaseController
 {
-    private $baseRoute = '/peminjaman';
+    private $baseRoute = '/transaksi/peminjaman';
 
     public function getAll(Request $request){
         $url= $this->base_url . $this->baseRoute;

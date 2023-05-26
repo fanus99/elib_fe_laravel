@@ -63,3 +63,8 @@ function addInputField(name, label, type, isRequired, icon, value){
     return inputField;
 }
 
+function replaceUndifined(val){
+    if(val == undefined){
+        return "Buku belum dikembalikan";
+    }
+}
