@@ -19,7 +19,6 @@
                             <th>No</th>
                             <th scope="col">Tahun Ajaran</th>
                             <th scope="col">Semester</th>
-                            <th scope="col">IsActive</th>
                             <th scope="col">aksi</th>
                         </tr>
                     </thead>
@@ -48,7 +47,6 @@
                                     <td>`+ no +`</td>
                                     <td>`+ value.TahunAjaran +`</td>
                                     <td>`+ value.Semester +`</td>
-                                    <td>`+ value.IsActive +`</td>
                                     <td>
                                         <button  data-id="`+ value.IdSemester +`" class="btn btn-success btn-sm buttonUpdate">update</button>
                                         <button  data-id="`+ value.IdSemester +`" class="btn btn-danger btn-sm buttonDelete">delete</button>

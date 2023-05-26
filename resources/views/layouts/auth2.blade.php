@@ -25,7 +25,7 @@
                     @endif
                     <div class="bg-white shadow rounded">
                         <div class="row">
-                            <div class="col-md-7 pe-0">
+                            <div class="col-md-12 pe-0">
                                 <main>
                                 @yield('content')
                                 </main>

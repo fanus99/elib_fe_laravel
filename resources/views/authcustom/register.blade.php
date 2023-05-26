@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth2')
 
 @section('content')
 <div class="form-left h-100 py-5 px-5">
@@ -10,7 +10,7 @@
         <div class="col-12">
             <label>Nama Institusi<span class="text-danger">*</span></label>
             <div class="input-group">
-                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                <div class="input-group-text"><i class="bi bi-building"></i></div>
                 <input type="text" name="InstitutionName" class="form-control" placeholder="Enter Institution name" required>
             </div>
             <span id="alert-InstitutionName" class="text-danger"></span>
@@ -26,7 +26,7 @@
         <div class="col-12">
             <label>Email<span class="text-danger">*</span></label>
             <div class="input-group">
-                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                <div class="input-group-text"><i class="bi bi-envelope"></i></div>
                 <input type="email" name="Email" class="form-control" placeholder="Enter Email" required>
             </div>
             <span id="alert-Email" class="text-danger"></span>
@@ -34,7 +34,7 @@
         <div class="col-12">
             <label>Phonenumber<span class="text-danger">*</span></label>
             <div class="input-group">
-                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                <div class="input-group-text"><i class="bi bi-phone"></i></div>
                 <input type="text" name="Phonenumber" class="form-control" placeholder="Enter Phonenumber" required>
             </div>
             <span id="alert-Phonenumber" class="text-danger"></span>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-sm-6">
-        <a href="{{ route('loginview') }}" class="float-end text-primary">Login</a>
+        <a href="{{ route('loginview') }}" class="float-end text-primary ">Login</a>
         </div>
 
         <div class="col-12">
