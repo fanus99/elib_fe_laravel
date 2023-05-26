@@ -45,7 +45,7 @@
             $.each(data.data, function( index, value ) {
                 renderData += `<tr>
                                     <td>`+ no +`</td>
-                                    <td>`+ value.Jenjang +`</td>
+                                    <td>`+ value.Grade +`</td>
                                     <td>`+ value.Rombel +`</td>
                                     <td>
                                         <button  data-id="`+ value.IdKelas +`" class="btn btn-success btn-sm buttonUpdate">update</button>
@@ -110,7 +110,7 @@
         function createForm(){
             var formHtml = "";
             // addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("Jenjang", "Jenjang", "text", true, 'bi-person-fill', '');
+            formHtml += addInputField("Grade", "Jenjang", "text", true, 'bi-person-fill', '');
             formHtml += addInputField("Rombel", "Rombel", "text", true, 'bi-person-vcard', '');
 
             $("#formModalCreate").html(formHtml);
@@ -126,7 +126,7 @@
             var data = getDataById(id);
             var formHtml = "";
             //addInputField(name, label, type, isRequired, icon, value)
-            formHtml += addInputField("Jenjang", "Jenjang", "text", true, 'bi-person-fill', data.data.Jenjang);
+            formHtml += addInputField("Grade", "Jenjang", "text", true, 'bi-person-fill', data.data.Grade);
             formHtml += addInputField("Rombel", "Rombel", "text", true, 'bi-person-vcard', data.data.Rombel);
 
             $("#formModalUpdate").html(formHtml);

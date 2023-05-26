@@ -114,7 +114,6 @@
             // addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TahunAjaran", "Tahun Ajaran", "text", true, 'bi-person-fill', '');
             formHtml += addInputField("Semester", "Semester", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("IsActive", "IsActive", "text", true, 'bi-person-vcard', '');
 
             $("#formModalCreate").html(formHtml);
         }
@@ -131,7 +130,6 @@
             //addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TahunAjaran", "Tahun Ajaran", "text", true, 'bi-person-fill', data.data.TahunAjaran);
             formHtml += addInputField("Semester", "Semester", "text", true, 'bi-person-vcard', data.data.Semester);
-            formHtml += addInputField("IsActive", "IsActive", "text", true, 'bi-person-vcard', data.data.IsActive);
 
             $("#formModalUpdate").html(formHtml);
         }
