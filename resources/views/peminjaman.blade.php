@@ -19,6 +19,7 @@
                             <th>No</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Batas Pengembalian</th>
+                            <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Siswa</th>
                             <th scope="col">Buku</th>
                             <th scope="col">aksi</th>
@@ -49,7 +50,9 @@
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
-                                    <td>`+ replaceUndifined(value.TanggalPengembalian) +`</td>
+                                    <td>`+ replaceUndifined(value.TanggalPengembalian) +`
+                                        <a data-id="`+ value.IdPeminjaman +`" class="btn btn-success btn-sm buttonPengembalian" href="#">Siswa Mengembalikan</a>
+                                    </td>
                                     <td>`+ value.Siswa +`</td>
                                     <td>`+ value.Buku +`</td>
                                     <td>
@@ -75,8 +78,6 @@
             return AjaxGet($baseroute + 'get-by-id/' + $id);
         }
 
-
-
         $(function() {
             getData();
         });
@@ -84,6 +85,8 @@
         function refreshUpdateListener(){
             const buttonUpdate = document.querySelectorAll('.buttonUpdate');
             const buttonDelete = document.querySelectorAll('.buttonDelete');
+            const buttonPengembalian = document.querySelectorAll('.buttonPengembalian');
+
 
             buttonUpdate.forEach(box => {
                 box.addEventListener('click', function handleClick(event) {
@@ -98,6 +101,13 @@
                 box.addEventListener('click', function handleClick(event) {
                     var idData = this.getAttribute("data-id");
                     deleteData(idData);
+                });
+            });
+
+            buttonPengembalian.forEach(box => {
+                box.addEventListener('click', function handleClick(event) {
+                    var idData = this.getAttribute("data-id");
+                    pengembalianBuku(idData);
                 });
             });
         }
@@ -181,9 +191,23 @@
                 confirmButtonText: 'Yes',
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    var deleteData = AjaxDelete($baseroute + "delete/" + id + "", {"_token": "{{ csrf_token() }}"});
+                    var deleteData = AjaxPost($baseroute + "pengembalian/" + id + "", {"_token": "{{ csrf_token() }}"});
                     getData();
-                    Swal.fire('Sukses', "Data deleted",'success');
+                    Swal.fire('Sukses', "Buku sudah dikembalikan",'success');
+                }
+            });
+        }
+
+        function pengembalianBuku(id){
+            Swal.fire({
+                title: 'Buku sudah dikembalikan?',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    var deleteData = AjaxDelete($baseroute + "pengembalian/" + id + "", {"_token": "{{ csrf_token() }}"});
+                    getData();
+                    Swal.fire('Sukses', "Siswa sudah mengembalikan",'success');
                 }
             });
         }
