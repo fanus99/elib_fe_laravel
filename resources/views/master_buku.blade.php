@@ -70,7 +70,9 @@
                                     <td>`+ value.DeskripsiFisik +`</td>
                                     <td>`+ value.JumlahExemplar +`</td>
                                     <td>`+ value.TanggalMasuk +`</td>
-                                    <td>`+ value.CoverBuku +`</td>
+                                    <td>
+                                     <img src="`+ value.CoverBuku +`" alt="Lamp" width="32" height="32">
+                                    </td>
                                     <td>`+ value.TipeKoleksi +`</td>
                                     <td>`+ value.Lokasi +`</td>
                                     <td>`+ value.Bahasa +`</td>
@@ -149,12 +151,12 @@
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("JumlahExemplar", "Jumlah Exemplar", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "date", true, 'bi bi-calendar-event', '');
             formHtml += addInputField("CoverBuku", "Cover Buku", "text", true, 'bi bi-book', '');
-            formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi bi-collection-fill', '');
             formHtml += addInputField("Lokasi", "Lokasi", "text", true, 'bi bi-geo', '');
             formHtml += addInputField("Bahasa", "Bahasa", "text", true, 'bi bi-translate', '');
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', '');
 
             $("#formModalCreate").html(formHtml);
         }
@@ -179,12 +181,12 @@
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', data.data.Abstrak);
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', data.data.DeskripsiFisik);
             formHtml += addInputField("JumlahExemplar", "Jumlah Exemplar", "text", true, 'bi-person-vcard', data.data.JumlahExemplar);
-            formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "text", true, 'bi-person-vcard', data.data.TanggalMasuk);
+            formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "text", true, 'bi bi-calendar-event', data.data.TanggalMasuk);
             formHtml += addInputField("CoverBuku", "Cover Buku", "text", true, 'bi bi-book', data.data.CoverBuku);
-            formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi-person-vcard', data.data.TipeKoleksi);
+            formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi bi-collection-fill', data.data.TipeKoleksi);
             formHtml += addInputField("Lokasi", "Lokasi", "text", true, 'bi bi-geo', data.data.Lokasi);
             formHtml += addInputField("Bahasa", "Bahasa", "text", true, 'bi bi-translate', data.data.Bahasa);
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi-person-vcard', data.data.JumlahEksemplar);
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', data.data.JumlahEksemplar);
 
             $("#formModalUpdate").html(formHtml);
         }
