@@ -81,6 +81,7 @@
 
         $(function() {
             getData();
+            renderSelectForm();
         });
 
         function refreshUpdateListener(){
@@ -128,12 +129,6 @@
             // addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', '');
             formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', '');
-            formHtml += `<select name="Siswa" class="form-control">
-                            <option value='19'>amaw</option>
-                        </select>`
-                        formHtml += `<select name="Buku" class="form-control">
-                            <option value='1'>Trik mudah belajar login</option>
-                        </select>`
 
             $("#formModalCreate").html(formHtml);
         }
@@ -212,5 +207,47 @@
                 }
             });
         }
+
+        function renderSelectForm(){
+            var dataSiswa = formatingSiswa(getDataSiswa());
+            var dataBuku = formatingBuku(getDataBuku());
+            $("#dropdownModalCreate").append(addInputSelect("Siswa", "Siswa", true, "bi-person-vcard", dataSiswa));
+            $("#dropdownModalUpdate").append(addInputSelect("Siswa", "Siswa", true, "bi-person-vcard", dataSiswa));
+            $("#dropdownModalCreate").append(addInputSelect("Buku", "Buku", true, "bi-person-vcard", dataBuku));
+            $("#dropdownModalUpdate").append(addInputSelect("Buku", "Buku", true, "bi-person-vcard", dataBuku));
+        }
+
+        function formatingSiswa(data){
+            let dataArr = [];
+            console.log(data);
+            $.each(data.data, function(index, value) {
+                dataArr.push({
+                    id: value.IdSiswa,
+                    value: value.Nama
+                });
+            });
+
+            return dataArr;
+        }
+
+        function formatingBuku(data){
+            let dataArr = [];
+            $.each(data.data, function(index, value) {
+                dataArr.push({
+                    id: value.IdBuku,
+                    value: value.JudulBuku
+                });
+            });
+
+            return dataArr;
+        }
+
+        function getDataSiswa(){
+            return AjaxGet('/master/siswa/api/get-all');
+        }
+        function getDataBuku(){
+            return AjaxGet('/master/buku/api/get-all');
+        }
+
     </script>
 @endsection
