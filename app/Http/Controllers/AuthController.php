@@ -31,7 +31,7 @@ class AuthController extends BaseController
         $data = $response->object();
 
         if($response->status() == 201){
-            $data->data->redirect = "/login";
+            $data->data->redirect = "/";
             $data->data->status = true;
         }
 

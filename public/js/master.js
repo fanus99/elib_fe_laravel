@@ -63,3 +63,21 @@ function addInputField(name, label, type, isRequired, icon, value){
     return inputField;
 }
 
+function addInputImage(name, label, type, isRequired, icon, value){
+    var requiredText = "";
+    if(isRequired == true){
+        requiredText = `required=""`
+    }
+    var inputField =  `<form name="CoverBuku"  >
+    <div class="form-group" >
+        <label>`+ label +`<span class="text-danger">*</span></label>
+        <input type="`+ type +`" name="`+ name +`" value="`+ value +`" class="form-control" placeholder="Enter `+ label +`" `+ requiredText +` style="height:150px">
+    </div>
+ </form>`;
+
+                        
+                        
+
+    return inputField;
+}
+

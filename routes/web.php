@@ -67,6 +67,7 @@ Route::middleware('AuthAccess')->group(function(){
                 Route::post('/create', [App\Http\Controllers\BukuController::class, 'create'])->name('create');
                 Route::post('/update/{id}', [App\Http\Controllers\BukuController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [App\Http\Controllers\BukuController::class, 'delete'])->name('delete');
+                Route::post('/store', [BukuController::class, 'dropzoneStore'])->name('dropzone.store');
             });
         });
         Route::group(['prefix' => 'peminjaman', 'as' => 'peminjaman.'], function () {
