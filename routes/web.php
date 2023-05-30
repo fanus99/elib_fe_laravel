@@ -77,6 +77,7 @@ Route::middleware('AuthAccess')->group(function(){
                 Route::post('/create', [App\Http\Controllers\PeminjamanController::class, 'create'])->name('create');
                 Route::post('/update/{id}', [App\Http\Controllers\PeminjamanController::class, 'update'])->name('update');
                 Route::delete('/delete/{id}', [App\Http\Controllers\PeminjamanController::class, 'delete'])->name('delete');
+                Route::delete('/pengembalian/{id}', [App\Http\Controllers\PeminjamanController::class, 'kembali'])->name('kembali');
             });
         });
     });

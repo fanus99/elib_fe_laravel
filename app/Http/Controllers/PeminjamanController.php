@@ -42,4 +42,11 @@ class PeminjamanController extends BaseController
 
         return $response->object();
     }
+
+    public function kembali($id, Request $request){
+        $url= $this->base_url . $this->baseRoute . "pengembalian/" . $id .'';
+        $response = $this->PutDataWithAuth($url, $request);
+
+        return $response->object();
+    }
 }

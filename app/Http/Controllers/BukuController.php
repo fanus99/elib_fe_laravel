@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BukuController extends BaseController
 {
-    private $baseRoute = '/buku';
+    private $baseRoute = '/master/buku';
 
     public function getAll(Request $request){
         $url= $this->base_url . $this->baseRoute;

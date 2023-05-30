@@ -63,6 +63,34 @@ function addInputField(name, label, type, isRequired, icon, value){
     return inputField;
 }
 
+function addInputSelect(name, label, isRequired, icon, data){
+    var requiredText = "";
+    if(isRequired == true){
+        requiredText = `required=""`
+    }
+    var inputField =    `<div class="col-12">
+                            <label>`+ label +`<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <div class="input-group-text"><i class="bi `+ icon +`"></i></div>
+                                <select name="`+ name +`" class="form-control" `+ requiredText +`>`;
+                                alert(data);
+    $.each(data, function(index, value) {
+        alert(data);
+        inputField += `<option value='`+ value.id +`'>`+ value.value +`</option>`;
+    });
+
+    inputField += `</select>
+                    </div>
+                </div>`;
+
+    return inputField;
+}
+
+function replaceUndifined(val){
+    if(val == undefined){
+        return "Buku belum dikembalikan";
+    }
+}
 function addInputImage(name, label, type, isRequired, icon, value){
     var requiredText = "";
     if(isRequired == true){

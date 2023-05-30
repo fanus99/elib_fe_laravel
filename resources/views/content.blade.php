@@ -32,6 +32,7 @@
                 <div class="modal-body">
                     @csrf
                     <div id="formModalCreate" class="row g-3"></div>
+                    <div id="dropdownModalCreate" class="row g-3"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -53,6 +54,7 @@
                     @csrf
                     <input name="IdSiswa" id="idUpdateForm" type="hidden"/>
                     <div id="formModalUpdate" class="row g-3"></div>
+                    <div id="dropdownModalUpdate" class="row g-3"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

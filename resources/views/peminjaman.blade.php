@@ -19,6 +19,7 @@
                             <th>No</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Batas Pengembalian</th>
+                            <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Siswa</th>
                             <th scope="col">Buku</th>
                             <th scope="col">aksi</th>
@@ -45,10 +46,14 @@
             var renderData = ``;
             var no = 1;
             $.each(data.data, function( index, value ) {
+                if(value.TanggalPengembalian == "undefined"){
+                    value.TanggalPengembalian = replaceUndifined(value.TanggalPengembalian) + `<a data-id="`+ value.IdPeminjaman +`" class="buttonPengembalian" href="#">Siswa Mengembalikan</a>`;
+                }
                 renderData += `<tr>
                                     <td>`+ no +`</td>
                                     <td>`+ value.TanggalPinjam +`</td>
                                     <td>`+ value.BatasPengembalian +`</td>
+                                    <td>`+ value.TanggalPengembalian +`</td>
                                     <td>`+ value.Siswa +`</td>
                                     <td>`+ value.Buku +`</td>
                                     <td>
@@ -74,15 +79,16 @@
             return AjaxGet($baseroute + 'get-by-id/' + $id);
         }
 
-
-
         $(function() {
             getData();
+            renderSelectForm();
         });
 
         function refreshUpdateListener(){
             const buttonUpdate = document.querySelectorAll('.buttonUpdate');
             const buttonDelete = document.querySelectorAll('.buttonDelete');
+            const buttonPengembalian = document.querySelectorAll('.buttonPengembalian');
+
 
             buttonUpdate.forEach(box => {
                 box.addEventListener('click', function handleClick(event) {
@@ -97,6 +103,13 @@
                 box.addEventListener('click', function handleClick(event) {
                     var idData = this.getAttribute("data-id");
                     deleteData(idData);
+                });
+            });
+
+            buttonPengembalian.forEach(box => {
+                box.addEventListener('click', function handleClick(event) {
+                    var idData = this.getAttribute("data-id");
+                    pengembalianBuku(idData);
                 });
             });
         }
@@ -116,12 +129,6 @@
             // addInputField(name, label, type, isRequired, icon, value)
             formHtml += addInputField("TanggalPinjam", "Tanggal Pinjam", "date", true, 'bi-person-fill', '');
             formHtml += addInputField("BatasPengembalian", "Batas Pengembalian", "date", true, 'bi-person-vcard', '');
-            formHtml += `<select name="Siswa" class="form-control">
-                            <option value='19'>amaw</option>
-                        </select>`
-                        formHtml += `<select name="Buku" class="form-control">
-                            <option value='1'>Trik mudah belajar login</option>
-                        </select>`
 
             $("#formModalCreate").html(formHtml);
         }
@@ -180,11 +187,67 @@
                 confirmButtonText: 'Yes',
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    var deleteData = AjaxDelete($baseroute + "delete/" + id + "", {"_token": "{{ csrf_token() }}"});
+                    var deleteData = AjaxPost($baseroute + "pengembalian/" + id + "", {"_token": "{{ csrf_token() }}"});
                     getData();
-                    Swal.fire('Sukses', "Data deleted",'success');
+                    Swal.fire('Sukses', "Buku sudah dikembalikan",'success');
                 }
             });
         }
+
+        function pengembalianBuku(id){
+            Swal.fire({
+                title: 'Buku sudah dikembalikan?',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    var deleteData = AjaxDelete($baseroute + "pengembalian/" + id + "", {"_token": "{{ csrf_token() }}"});
+                    getData();
+                    Swal.fire('Sukses', "Siswa sudah mengembalikan",'success');
+                }
+            });
+        }
+
+        function renderSelectForm(){
+            var dataSiswa = formatingSiswa(getDataSiswa());
+            var dataBuku = formatingBuku(getDataBuku());
+            $("#dropdownModalCreate").append(addInputSelect("Siswa", "Siswa", true, "bi-person-vcard", dataSiswa));
+            $("#dropdownModalUpdate").append(addInputSelect("Siswa", "Siswa", true, "bi-person-vcard", dataSiswa));
+            $("#dropdownModalCreate").append(addInputSelect("Buku", "Buku", true, "bi-person-vcard", dataBuku));
+            $("#dropdownModalUpdate").append(addInputSelect("Buku", "Buku", true, "bi-person-vcard", dataBuku));
+        }
+
+        function formatingSiswa(data){
+            let dataArr = [];
+            console.log(data);
+            $.each(data.data, function(index, value) {
+                dataArr.push({
+                    id: value.IdSiswa,
+                    value: value.Nama
+                });
+            });
+
+            return dataArr;
+        }
+
+        function formatingBuku(data){
+            let dataArr = [];
+            $.each(data.data, function(index, value) {
+                dataArr.push({
+                    id: value.IdBuku,
+                    value: value.JudulBuku
+                });
+            });
+
+            return dataArr;
+        }
+
+        function getDataSiswa(){
+            return AjaxGet('/master/siswa/api/get-all');
+        }
+        function getDataBuku(){
+            return AjaxGet('/master/buku/api/get-all');
+        }
+
     </script>
 @endsection
