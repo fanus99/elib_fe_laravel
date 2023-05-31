@@ -40,4 +40,13 @@ class BaseController extends Controller
             'Content-Type' => 'application/json'
         ])->delete($url);
     }
+
+    public function PostImageWithAuth($url, Request $request){
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+
+        return Http::withHeaders([
+            'access_token' =>  session()->get('access_token'),
+        ])->attach('fileUpload', $request->file('file'),$filename)->post($url);
+    }
 }

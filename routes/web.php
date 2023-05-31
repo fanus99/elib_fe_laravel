@@ -33,6 +33,11 @@ Route::middleware('AuthAccess')->group(function(){
     // Dashboard
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
+        Route::group(['prefix' => 'file', 'as' => 'file.'], function () {
+            Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+                Route::post('/upload', [App\Http\Controllers\FileController::class, 'upload'])->name('upload');
+            });
+        });
         Route::group(['prefix' => 'siswa', 'as' => 'siswa.'], function () {
             Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
                 Route::get('/get-all', [App\Http\Controllers\SiswaController::class, 'getAll'])->name('getAll');

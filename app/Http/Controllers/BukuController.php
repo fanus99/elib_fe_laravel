@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class BukuController extends BaseController
 {
-    private $baseRoute = '/master/buku';
+    private $baseRoute = '/master/buku/';
 
     public function getAll(Request $request){
         $url= $this->base_url . $this->baseRoute;
         $response = $this->GetDataWithAuth($url);
 
-        return  $response;
+        return  $response->object();
     }
 
     public function getById($id){
@@ -33,7 +33,7 @@ class BukuController extends BaseController
         $url= $this->base_url . $this->baseRoute . $id .'';
         $response = $this->PutDataWithAuth($url, $request);
 
-        return $this->PutDataWithAuth($url, $request);
+        return $response->object();
     }
 
     public function delete($id){

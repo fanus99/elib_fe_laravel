@@ -12,7 +12,7 @@
             <i class="fa-solid fa-book"></i>
                 Data Buku
             </div>
-            <div class="card-body">
+            <div class="card-body" style="overflow-x:auto">
                 <table class="table" id="TableData">
                     <thead>
                         <tr>
@@ -32,7 +32,6 @@
                             <th scope="col">Tipe Koleksi</th>
                             <th scope="col">Lokasi</th>
                             <th scope="col">Bahasa</th>
-                            <th scope="col">Jumlah Eksemplar</th>
                             <th scope="col">aksi</th>
                         </tr>
                     </thead>
@@ -68,13 +67,12 @@
                                     <td>`+ value.TempatTerbit +`</td>
                                     <td>`+ value.Abstrak +`</td>
                                     <td>`+ value.DeskripsiFisik +`</td>
-                                    <td>`+ value.JumlahExemplar +`</td>
+                                    <td>`+ value.JumlahEksemplar +`</td>
                                     <td>`+ value.TanggalMasuk +`</td>
-                                    <td>` + value.CoverBuku +`</td>
+                                    <td><img href="https://` + value.CoverBuku +`" style="width:100px; height:100px;"/></td>
                                     <td>`+ value.TipeKoleksi +`</td>
                                     <td>`+ value.Lokasi +`</td>
                                     <td>`+ value.Bahasa +`</td>
-                                    <td>`+ value.JumlahEksemplar +`</td>
 
                                     <td>
                                         <button  data-id="`+ value.IdBuku +`" class="btn btn-success btn-sm buttonUpdate">update</button>
@@ -131,6 +129,20 @@
         function openModalCreate(model){
             $("#createModalTitle").html(model);
             createForm();
+            var myDropzone = new Dropzone("div#DropzoneCreate", {
+                maxFiles: 1,
+                url: "/master/file/api/upload",
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                dictRemoveFile: "Delete",
+                addRemoveLinks: true,
+                success:function(file, response)
+                {
+                    $("#CoverBukuCreate").val(response.data);
+                }
+            });
+
             createModal.show();
         }
 
@@ -146,14 +158,18 @@
             formHtml += addInputField("TempatTerbit", "Tempat Terbit", "text", true, 'bi bi-geo-alt', '');
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("JumlahExemplar", "Jumlah Exemplar", "text", true, 'bi-person-vcard', '');
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', '');
             formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "date", true, 'bi bi-calendar-event', '');
-            formHtml += addInputImage("CoverBuku", "Cover Buku", "file", true, 'bi bi-book', '');
-            // formHtml += addInputField("CoverBuku", "Cover Buku", "text", true, 'bi bi-book', '');
+            formHtml += `<div class="form-group" >
+                            <label>Cover Buku<span class="text-danger">*</span></label>
+                            <div id="DropzoneCreate" class="fallback dropzone">
+                                <input name="CoverBuku" type="hidden" id="CoverBukuCreate"/>
+                            </div>
+                        </div>
+                        `;
             formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi bi-collection-fill', '');
             formHtml += addInputField("Lokasi", "Lokasi", "text", true, 'bi bi-geo', '');
             formHtml += addInputField("Bahasa", "Bahasa", "text", true, 'bi bi-translate', '');
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', '');
 
             $("#formModalCreate").html(formHtml);
         }
@@ -161,6 +177,18 @@
         function openModalUpdate(model, id){
             $("#updateModalTitle").html(model);
             updateFrom(id);
+            var myDropzone = new Dropzone("div#DropzoneUpdate", {
+                maxFiles: 1,
+                url: "/master/file/api/upload",
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success:function(file, response)
+                {
+                    $("#CoverBukuUpdate").val(response.data);
+                }
+            });
+
             updateModal.show();
         }
 
@@ -177,17 +205,23 @@
             formHtml += addInputField("TempatTerbit", "Tempat Terbit", "text", true, 'bi bi-geo-alt', data.data.TempatTerbit);
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', data.data.Abstrak);
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', data.data.DeskripsiFisik);
-            formHtml += addInputField("JumlahExemplar", "Jumlah Exemplar", "text", true, 'bi-person-vcard', data.data.JumlahExemplar);
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', data.data.JumlahEksemplar);
             formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "text", true, 'bi bi-calendar-event', data.data.TanggalMasuk);
-            formHtml += addInputImage("CoverBuku", "Cover Buku", "file", true, 'bi bi-book', data.data.CoverBuku);
-            // formHtml += addInputField("CoverBuku", "Cover Buku", "text", true, 'bi bi-book', data.data.CoverBuku);
-            
+            formHtml += `<div class="form-group" >
+                            <label>Cover Buku<span class="text-danger">*</span></label>
+                            <div id="DropzoneUpdate" class="fallback dropzone">
+                                <input name="CoverBuku" type="hidden" id="CoverBukuUpdate"/>
+                            </div>
+                        </div>
+                        `;
+
             formHtml += addInputField("TipeKoleksi", "Tipe Koleksi", "text", true, 'bi bi-collection-fill', data.data.TipeKoleksi);
             formHtml += addInputField("Lokasi", "Lokasi", "text", true, 'bi bi-geo', data.data.Lokasi);
             formHtml += addInputField("Bahasa", "Bahasa", "text", true, 'bi bi-translate', data.data.Bahasa);
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', data.data.JumlahEksemplar);
+
 
             $("#formModalUpdate").html(formHtml);
+            $("#CoverBukuUpdate").val(data.data.CoverBuku);
         }
 
         $("#formCreate").submit(function (event) {
