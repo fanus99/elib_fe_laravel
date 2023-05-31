@@ -158,7 +158,7 @@
             formHtml += addInputField("TempatTerbit", "Tempat Terbit", "text", true, 'bi bi-geo-alt', '');
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', '');
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', '');
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', '');
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "number", true, 'bi bi-archive', '');
             formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "date", true, 'bi bi-calendar-event', '');
             formHtml += `<div class="form-group" >
                             <label>Cover Buku<span class="text-danger">*</span></label>
@@ -205,7 +205,7 @@
             formHtml += addInputField("TempatTerbit", "Tempat Terbit", "text", true, 'bi bi-geo-alt', data.data.TempatTerbit);
             formHtml += addInputField("Abstrak", "Abstrak", "text", true, 'bi-person-vcard', data.data.Abstrak);
             formHtml += addInputField("DeskripsiFisik", "Deskripsi Fisik", "text", true, 'bi-person-vcard', data.data.DeskripsiFisik);
-            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "text", true, 'bi bi-archive', data.data.JumlahEksemplar);
+            formHtml += addInputField("JumlahEksemplar", "Jumlah Eksemplar", "number", true, 'bi bi-archive', data.data.JumlahEksemplar);
             formHtml += addInputField("TanggalMasuk", "Tanggal Masuk", "text", true, 'bi bi-calendar-event', data.data.TanggalMasuk);
             formHtml += `<div class="form-group" >
                             <label>Cover Buku<span class="text-danger">*</span></label>
